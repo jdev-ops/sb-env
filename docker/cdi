@@ -1,0 +1,8 @@
+#!/bin/bash
+
+docker stop sb
+docker rm sb
+sudo -Rf ~/Desktop/sb/my-env/postgres/pgdata
+docker build . -t sbpi
+
+docker run -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=11qazxsw22 -p 5432:5432 --name sb -v ~/Desktop/sb/my-env/postgres/pgdata:/var/lib/postgresql/data/ -d sbpi

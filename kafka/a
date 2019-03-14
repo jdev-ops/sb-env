@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test_topic
+
+
+# bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+
+# bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test_topic
+
+
+# bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test_topic \
+#        --property parse.key=true \
+#        --property key.separator=,
+
+# bin/zookeeper-shell.sh localhost:2181
+# ls /brokers/topics
+# [__consumer_offsets, test_topic]
+# rmr /brokers/topics/test_topic
+# ls /brokers/topics
+# [__consumer_offsets]
+
+
+# tr -d '\n' < msg.json | bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test_topic
+
+http --body "http://localhost:8089/json-msgs/user-created/$1.json" | tr -d '\n' | cat
+
+http --body "http://localhost:8089/json-msgs/user-created/$1.json" | tr -d '\n' | bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test_topic
