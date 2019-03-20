@@ -12,7 +12,6 @@ root: ~/appslnx/db/kafka2/
 # Project hooks
 # Runs on project start, always
 # on_project_start: command
-on_project_start: (lsof -wni tcp:9092 | awk '{if(NR>1)print}'| awk '{print $2}' | xargs kill -9 && rm -Rf /home/a/appslnx/db/kafka2/data/)
 
 # Run on project start, the first time
 # on_project_first_start: command
@@ -22,6 +21,8 @@ on_project_start: (lsof -wni tcp:9092 | awk '{if(NR>1)print}'| awk '{print $2}' 
 # on_project_exit: command
 # Run on project stop
 # on_project_stop: command
+
+on_project_stop: (lsof -wni tcp:9092 | awk '{if (NR>1) print}'| awk '{print $2}' | xargs kill -9 && rm -Rf /home/a/appslnx/db/kafka2/data/)
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247

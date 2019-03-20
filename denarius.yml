@@ -14,12 +14,17 @@ root: ~/Desktop/sb/dev/denarius-ewallet/
 # on_project_start: command
 # Run on project start, the first time
 # on_project_first_start: command
+
+on_project_first_start: docker start sb
+
 # Run on project start, after the first time
 # on_project_restart: command
 # Run on project exit ( detaching from tmux session )
 # on_project_exit: command
 # Run on project stop
 # on_project_stop: command
+
+on_project_stop: docker stop sb
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247
