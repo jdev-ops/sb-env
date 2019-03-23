@@ -9,4 +9,4 @@ on_project_stop: docker stop sb
 
 windows:
   - mix:
-  - test_resources: python3 -m http.server 8089 
+  - resources: python3 -m http.server 8089
