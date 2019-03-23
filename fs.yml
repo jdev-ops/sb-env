@@ -1,0 +1,16 @@
+# /home/a/.config/tmuxinator/fs.yml
+
+name: fs
+root: ~/src/a/factual-smart/src/backend/bff-service/src/
+
+on_project_first_start: docker start pg
+
+on_project_stop: docker stop pg
+
+pre_window: workon g
+
+windows:
+  - editor:
+      layout: main-vertical
+  - server: python main.py
+ 
