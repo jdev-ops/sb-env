@@ -28,7 +28,7 @@ http --body "http://localhost:8089/json-msgs/user-created/$1.json" | tr -d '\n' 
 #echo
 #echo "----------------------------------------"
 
-KAFKA_MESSAGE=$(http --body "http://localhost:8089/json-msgs/user-created/$1.json") # | tr -d '\n' # | (read line; echo "$line") 
+KAFKA_MESSAGE=$(http --body "http://localhost:8089/json-msgs/$TEST_FOLDER/$1.json") # | tr -d '\n' # | (read line; echo "$line")
 
 # http --body "http://localhost:8089/json-msgs/user-created/$1.json" | jq -r '.type' | (read line; echo "$line")
 
