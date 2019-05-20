@@ -1,0 +1,11 @@
+name: nomad
+root: ~/src/a/POCs/nomad/
+
+on_project_first_start: direnv allow && docker run -d --rm --name=consul-dev --net host -enable-script-checks consul:1.5.1
+
+on_project_stop: stop-all-jobs-nomad
+
+windows:
+  - jobs: cd src/lum-swagger/nomad/ && direnv allow && sleep 5 && nomad job run wiremock.nomad
+  - nomad: nomad agent -dev
+  - resources: cd src/resources/ && python3 -m http.server 8000

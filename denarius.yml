@@ -3,9 +3,9 @@
 name: denarius
 root: ~/Desktop/sb/dev/denarius-ewallet/
 
-on_project_first_start: docker start sb
+on_project_first_start: docker start sb && docker start denarius-rabbit
 
-on_project_stop: docker stop sb
+on_project_stop: docker stop sb && docker stop denarius-rabbit
 
 windows:
   - mix:
